@@ -5,8 +5,7 @@ services:
       - 28080:8080 # API
       - 22112:2112 # Prometheus metrics
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
     environment:
       # Pass-in the config to connect to the DB and MinIO
       ENTE_CREDENTIALS_FILE: /credentials.yaml
