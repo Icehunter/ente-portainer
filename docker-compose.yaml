@@ -11,8 +11,8 @@ services:
       ENTE_CREDENTIALS_FILE: /credentials.yaml
     volumes:
       - /mnt/storage/apps/ente/custom-logs:/var/logs
-      - ./museum.yaml:/museum.yaml:ro
-      - ./scripts/compose/credentials.yaml:/credentials.yaml:ro
+      - /mnt/storage/apps/ente/scripts/museum.yaml:/museum.yaml:ro
+      - /mnt/storage/apps/ente/scripts/credentials.yaml:/credentials.yaml:ro
       - /mnt/storage/apps/ente/data:/data:ro
 
   # Resolve "localhost:3200" in the museum container to the minio container.
@@ -58,6 +58,6 @@ services:
     depends_on:
       - minio
     volumes:
-      - ./scripts/compose/minio-provision.sh:/provision.sh:ro
+      - /mnt/storage/apps/ente/scripts/minio-provision.sh:/provision.sh:ro
       - /mnt/marin/apps/ente/minio-data:/data
     entrypoint: sh /provision.sh
